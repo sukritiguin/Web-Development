@@ -7,17 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" name="studentForm">
-        <p>Enter Name : </p>
-        <input type="text" name="studentName">
-        <p>Enter Email : </p>
-        <input type="text" name="studentEmail">
-        <p>Enter Mobile Number : </p>
-        <input type="text" name="studentMob">
-        <p>Captcha Code : </p>
-        <p>Enter Above Captcha Code : </p>
-        <input type="text" name="studentCaptcha">
-        <p>Enter Password : </p>
+    <form name="studentForm">
+        <label>Enter Name : </label>
+        <input type="text" name="studentName"><br><br>
+        <label>Enter Email : </label>
+        <input type="text" name="studentEmail"><br><br>
+        <label>Enter Mobile Number : </label>
+        <input type="text" name="studentMob"><br><br>
+        <input type="button" value="Generate Captcha" onclick="captchaFunction()">
+        <label>Captcha Code : <span id="capID"></span></label><br><br>
+        <label>Enter Above Captcha Code : </label>
+        <input type="text" name="studentCaptcha"><br><br>
+        <label>Enter Password : </label>
         <input type="text" name="studentPass"><br><br>
         <input type="submit" value="Submit Form" onclick="submitFunction()">
     </form>
@@ -25,16 +26,84 @@
 
     <!-- JavaScript -->
     <script>
+        var capCode = Math.floor(Math.random()*(100000-10000)) + 10000;
         function submitFunction(){
             // Values are taken
             var studentName = document.forms['studentForm']['studentName'].value;
             var studentEmail = document.forms['studentForm']['studentEmail'].value;
             var studentMob = document.forms['studentForm']['studentMob'].value;
-            var studentCaptcha = document.forms['studentForm']['studentName'].value;
+            var studentCaptcha = document.forms['studentForm']['studentCaptcha'].value;
+            var studentPass = document.forms['studentForm']['studentPass'].value;
             // Conditions
             // --- Student Name Conditions ---
-            if(studentName.length()<3 || studentName.length()>35){
+                //length must be in given length
+            if(studentName.length<3 || studentName.length>35){
                 alert("Student Name length must be between 3 to 35");
+            }
+                //special character are not allowed
+            var spl = '1234567890`~!@#$%^&*()_+-=/:;"\'{}[]<>,.?/';
+            for(var i=0;i<spl.length;i++){
+                for(var j=0;j<studentName.length;j++){
+                    if(spl[i]==studentName[j]){
+                        alert('No Special character or number are allowed in Name.');
+                        return;
+                    }
+                }
+            }
+            // --- Student Email condition ---
+            var count = 0;
+            for(var i=0;i<studentEmail.length;i++){
+                if(studentEmail[i]=='@'){
+                    count++;
+                }
+            }
+            if(count!=1){
+                alert("One and Only @ is required.");
+            }
+            // --- Student Mobile Number Condition ---
+            if(studentMob.length!=10){
+                alert("Student Mobile Number length must be 10");
+            }
+            var splmob = '`~!@#$%^&*()_+-=/:;"\'{}[]<>,.?/';
+            for(var i=0;i<splmob.length;i++){
+                for(var j=0;j<studentMob.length;j++){
+                    if(splmob[i]==studentMob[j] || (studentMob.charCodeAt(j) >=65 && studentMob.charCodeAt(j) <= 90) || (studentMob.charCodeAt(j) >=97 && studentMob.charCodeAt(j) <= 122)){
+                        alert('No Special character or number are allowed in Mobile Number.');
+                        return;
+                    }
+                }
+            }
+
+            // --- Captcha Code Condition
+            if(studentCaptcha!=capCode){
+                alert("Enter Valid Captcha Code");
+            }
+
+            // --- Password Condition
+            var passSplCount = 0;
+            var passNumCount = 0;
+            for(var i=0;i<splmob.length;i++){
+                for(var j=0;j<studentPass.length;j++){
+                    if(splmob[i]==studentPass[j]){
+                        passSplCount++;
+                    }
+                    if(studentPass[j]>=0 && studentPass[j]<=9){
+                        passNumCount++;
+                    }
+                }
+            }
+            if(passNumCount==0 || passSplCount==0){
+                alert("Password must contain atleast one special character and one number");
+            }
+            if(studentPass.length<8 || studentPass.length>15){
+                alert("Password length must be 8-15");
+            }
+        }
+
+        //Generate Captcha Function
+        function captchaFunction(){
+            if(document.getElementById('capID').innerHTML==""){
+                document.getElementById('capID').innerHTML += capCode;
             }
         }
     </script>
