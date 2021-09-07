@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" name="studentForm">
+        <p>Enter Name : </p>
+        <input type="text" name="studentName">
+        <p>Enter Email : </p>
+        <input type="text" name="studentEmail">
+        <p>Enter Mobile Number : </p>
+        <input type="text" name="studentMob">
+        <p>Captcha Code : </p>
+        <p>Enter Above Captcha Code : </p>
+        <input type="text" name="studentCaptcha">
+        <p>Enter Password : </p>
+        <input type="text" name="studentPass"><br><br>
+        <input type="submit" value="Submit Form" onclick="submitFunction()">
+    </form>
+
+
+    <!-- JavaScript -->
+    <script>
+        function submitFunction(){
+            // Values are taken
+            var studentName = document.forms['studentForm']['studentName'].value;
+            var studentEmail = document.forms['studentForm']['studentEmail'].value;
+            var studentMob = document.forms['studentForm']['studentMob'].value;
+            var studentCaptcha = document.forms['studentForm']['studentName'].value;
+            // Conditions
+            // --- Student Name Conditions ---
+            if(studentName.length()<3 || studentName.length()>35){
+                alert("Student Name length must be between 3 to 35");
+            }
+        }
+    </script>
+</body>
+</html>
