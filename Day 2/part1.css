@@ -1,0 +1,84 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Allison&family=Satisfy&display=swap'); */
+
+.body{
+    background-color: aquamarine;
+}
+
+#text-blue{
+    color: blue;
+}
+.bg-orange{
+    background: orange;
+}
+.bg-white{
+    background: white;
+}
+.text-green{
+    color: green;
+}
+.bg-yellow{
+    background: yellow;
+}
+.text-black{
+    color: black;
+}
+
+.bdr{
+    border-style: dashed;
+    border-width: 3px 5px 1px 2px;
+    border-color: tan;
+}
+
+.pad-1{
+    padding: 20px;
+}
+.pad-2{
+    padding: 40px;
+}
+.pad-3{
+    padding: 50px;
+}
+
+.mar-1{
+    margin: 20px;
+}
+.mar-2{
+    margin: 20px;
+}
+.mar-3{
+    margin: 50px;
+}
+
+.w-75{
+    width: 75%;
+}
+.w-50{
+    width: 50%;
+}
+
+.w-25{
+    width: 25%;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.h-100{
+    height: 100px;
+}
+.h-75{
+    height: 75px;
+}
+.h-50{
+    height: 50px;
+}
+
+.font-style1{
+    font-family: 'Satisfy';
+    font-size: xx-large;
+}
+.font-style2{
+    font-family: 'Allison';
+    font-size: 30px;
+}
